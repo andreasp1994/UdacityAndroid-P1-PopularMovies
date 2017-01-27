@@ -24,7 +24,8 @@ public class NetworkUtils {
     private static final String MOVIES_BASE_URL = "https://api.themoviedb.org/3/movie";
     private static final String MOVIES_POSTER_BASE_URL = "http://image.tmdb.org/t/p/";
 
-    private static String API_KEY = "<PUT YOUR API KEY HERE>";
+//    private static String API_KEY = "<PUT YOUR API KEY HERE>";
+    private static String API_KEY = "ec92aee617c8e4e0ccb465c9c96e9eec";
 
     public static ArrayList<Movie> fetchMoviesByPage(Movie.MovieCategory category, int page) throws IOException, JSONException{
         URL url = buildMoviesUrl(category, page);
@@ -113,5 +114,19 @@ public class NetworkUtils {
         } finally {
             urlConnection.disconnect();
         }
+    }
+
+    public static boolean isOnline() {
+        Runtime runtime = Runtime.getRuntime();
+        try {
+
+            Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
+            int     exitValue = ipProcess.waitFor();
+            return (exitValue == 0);
+
+        } catch (IOException e)          { e.printStackTrace(); }
+        catch (InterruptedException e) { e.printStackTrace(); }
+
+        return false;
     }
 }

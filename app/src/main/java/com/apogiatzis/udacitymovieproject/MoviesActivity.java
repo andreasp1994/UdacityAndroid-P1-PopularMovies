@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.OnScrollListener;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.apogiatzis.udacitymovieproject.models.Movie;
 import com.apogiatzis.udacitymovieproject.utilities.NetworkUtils;
@@ -25,7 +27,6 @@ public class MoviesActivity extends AppCompatActivity implements MovieAdapter.Mo
     private MovieAdapter mMoviesAdapter;
     private GridLayoutManager mGridLayoutManager;
     private ArrayList<Movie> mMoviesList;
-
     private Movie.MovieCategory activeMovieCategory;
     private int activeMoviePage;
 
@@ -54,7 +55,11 @@ public class MoviesActivity extends AppCompatActivity implements MovieAdapter.Mo
         mMoviesAdapter = new MovieAdapter(this);
         mMoviesRecyclerView.setAdapter(mMoviesAdapter);
 
-        loadMovieData(Movie.MovieCategory.TOP_RATED, 1, false);
+        if(NetworkUtils.isOnline()){
+            loadMovieData(Movie.MovieCategory.TOP_RATED, 1, false);
+        } else {
+            Toast.makeText(getApplicationContext(), "Check you internet connection!",Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void loadMovieData(Movie.MovieCategory category, int page, boolean append){
@@ -129,6 +134,8 @@ public class MoviesActivity extends AppCompatActivity implements MovieAdapter.Mo
                 else
                     mMoviesList = movies;
                 mMoviesAdapter.setMovieData(mMoviesList);
+            } else {
+                Toast.makeText(getBaseContext(), getBaseContext().getString(R.string.movie_fetch_error_msg), Toast.LENGTH_SHORT).show();
             }
         }
     }

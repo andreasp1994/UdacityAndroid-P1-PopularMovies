@@ -10,4 +10,6 @@
     <string name="movie_details_release_date">Release Date:</string>
     <string name="movie_details_rating">Rating:</string>
 
+    <string name="movie_fetch_error_msg">Error while fetching movies! </string>
+
 </resources>
