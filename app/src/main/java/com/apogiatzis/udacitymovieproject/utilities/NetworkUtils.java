@@ -24,8 +24,7 @@ public class NetworkUtils {
     private static final String MOVIES_BASE_URL = "https://api.themoviedb.org/3/movie";
     private static final String MOVIES_POSTER_BASE_URL = "http://image.tmdb.org/t/p/";
 
-//    private static String API_KEY = "<PUT YOUR API KEY HERE>";
-    private static String API_KEY = "ec92aee617c8e4e0ccb465c9c96e9eec";
+    private static String API_KEY = "<PUT YOUR API KEY HERE>";
 
     public static ArrayList<Movie> fetchMoviesByPage(Movie.MovieCategory category, int page) throws IOException, JSONException{
         URL url = buildMoviesUrl(category, page);
