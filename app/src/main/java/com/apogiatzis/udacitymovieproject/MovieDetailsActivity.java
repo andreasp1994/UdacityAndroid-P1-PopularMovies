@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.apogiatzis.udacitymovieproject.R;
 import com.apogiatzis.udacitymovieproject.models.Movie;
 import com.apogiatzis.udacitymovieproject.utilities.NetworkUtils;
 import com.squareup.picasso.Picasso;

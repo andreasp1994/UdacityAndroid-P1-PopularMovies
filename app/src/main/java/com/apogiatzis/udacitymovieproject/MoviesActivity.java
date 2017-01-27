@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.OnScrollListener;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -58,7 +57,7 @@ public class MoviesActivity extends AppCompatActivity implements MovieAdapter.Mo
         if(NetworkUtils.isOnline()){
             loadMovieData(Movie.MovieCategory.TOP_RATED, 1, false);
         } else {
-            Toast.makeText(getApplicationContext(), "Check you internet connection!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.movie_fetch_connection_error_msg),Toast.LENGTH_SHORT).show();
         }
     }
 
